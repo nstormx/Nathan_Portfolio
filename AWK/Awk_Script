@@ -1,0 +1,26 @@
+#!/usr/bin/awk -f
+
+#Changes the delimiter to colon.
+ FS=":"
+
+#Prints names with took, the it's followed by their total campaign contributions
+#First it searches for lines that have took in them, then it prints out the first
+#variable, then it says ", Total Campaign Contributions: $" so it can be easily
+#read, and finally it adds all of the funds together and prints out the result.
+/Took/ {print $1 ", Total Campaign Contributions: $" $3 + $4 + $5};
+
+#Prints "Bullroarer's Contributions"
+#First it searches for lines with Bull in them, then it prints "Bullroarer's-
+#-Contribution: $" so it can be read easier, and finally it prints out each of 
+#his contributions with dollar signs infront of them.
+/Bull/ {print "Bullroarer's Contribution: $"$3", $"$4", $"$5};
+
+#Prints all those who contributed over $175 for their last contribution
+#First it checks if variable $5 (the last contribution) is over $175 and if it is
+#then it prints out "Last Contribution Over $175: $" so it's easier to read then
+#it prints out variable $5.
+{if($5 > 175)print "Last Contribution Over $175: $" $5};
+
+#I added this extra line so the terminal is easier to read.
+{print " "};
+

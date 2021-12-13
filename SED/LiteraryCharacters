@@ -1,0 +1,21 @@
+#Deletes the duplicate line (15)
+15d
+# Inserts - Great Literary Characters - above the first line using, 1i which inserts the text above
+#the line I specify.
+1i\ - Great Literary Characters -\ 
+#This command deletes all blank spaces, by finding all the lines that start and end with nothing.
+/^$/d
+#This command gets rid of all the text besides the First name, last name, and phone number.
+#It does this by selecting the beginning of the line and then substitutes using ':[0-9]* .*' as
+#the search parameter. It's setup to select these specific letters because it needs to get the
+#2nd colon in the line and not the first one, like without the space between '* .*' it would pick
+#the first colon and delete everything besides the name.
+/^/{s/:[0-9]* .*//}
+#This next command is used to get rid of the last name.
+#It does this by substituting, and it first goes to the first colon in the line, and then grabs
+#any letters between that colon and the first space. Finally it replaces all the selected
+#characters with a space, so the phone number isn't right next to the name.
+s/..[a-z]*:/ /
+#This last command searches for Arya wich is the last line in the file, then it uses $a which
+#appends the text to the end of the file.
+/Arya/a\Happily Ever after. The End

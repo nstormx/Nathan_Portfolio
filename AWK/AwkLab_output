@@ -1,0 +1,228 @@
+1. Code: awk '{print $1}' AwkLab.data >> AwkLab_output
+
+Samuel
+Ponder
+Angua
+Susan
+Tiffany
+Sacharissa
+Adora
+Frodo
+Tom
+Peregrin
+Samwise
+A.A.
+Antoine
+Adalgrim
+Bandobras
+Belladonna
+Eglantine
+Mirabella
+Ferumbras
+Gerontius
+
+2. Code: awk -F: '/Frodo|Tom/ {print $2}' AwkLab.data >> AwkLab_output 
+
+(206) 548-1278
+(916) 348-4278
+
+3. Code: awk -F\) '/Peregrin/ {print $1 }' AwkLab.data >> AwkLab_output
+
+Peregrin Took:(510
+
+4. Code: awk -F: '/408/ {print $2 }' AwkLab.data
+
+(408) 538-2358
+(408) 926-3456
+
+5. Code: awk -F' |:' '/ Ba| Bo/{print $2}' AwkLab.data ; awk -F' |:' '/ D/{print $3}' AwkLab.data
+
+Baggins
+Bombadil
+Dearheart
+
+6. Code: awk 'length($1) <= 4 {print $1}' AwkLab.data >> AwkLab_output 
+
+Tom
+A.A.
+
+7. Code: awk '/\(916\) / {print $1}' AwkLab.data >> AwkLab_output
+
+Sacharissa
+Tom
+A.A.
+
+8. Code: awk -F: '/Sacharissa/ {print "$"$3 ",$"$4 ",$"$5}' AwkLab.data
+
+$250,$100,$175 
+
+9. Code: awk -F: '{print $1","$2}' AwkLab.data | awk '{print $2 " "$3 $4}' >> AwkLab_output
+
+Vimes,(510) 548-1278
+Stibbons,(408) 538-2358
+von Überwald,(206)654-6279
+Sto Helit,(206)548-1348
+Aching,(206) 548-1278
+Cripslock,(916) 343-6410
+Belle Dearheart,(406)298-7744
+Baggins,(206) 548-1278
+Bombadil,(916) 348-4278
+Took,(510) 548-5258
+Gamgee,(408) 926-3456
+Milne,(916) 440-1763
+de Saint-Exupery,(123)978-6432
+Took,(345) 978-7684
+"Bullroarer" Took,(453)978-3534
+Took,(123) 978-5754
+Took,(123) 978-3574
+Took,(345) 978-2677
+III Took,(563)978-753
+Took,(574) 978-8535
+
+10. Code: It's in the Awk_Script file attached
+
+
+
+2nd Part:
+
+1. Code: awk -F: '{if($5 > 110)print $1}' AwkLab.data 
+
+Samuel Vimes
+Ponder Stibbons
+Susan Sto Helit
+Tiffany Aching
+Sacharissa Cripslock
+Adora Belle Dearheart
+Tom Bombadil
+Peregrin Took
+Samwise Gamgee
+A.A. Milne
+Antoine de Saint-Exupery
+Adalgrim Took
+Bandobras "Bullroarer" Took
+Belladonna Took
+Eglantine Took
+Mirabella Took
+Ferumbras III Took
+Gerontius Took
+
+2. Code: awk -F: '{if($3 < 75)print $1","$2}' AwkLab.data | awk '{print $2 " "$3 $4}' >> AwkLab_output
+
+Aching,(206) 548-1278
+Took,(510) 548-5258
+
+3. Code: awk -F: '{if(75 < $3 && $3 < 150)print $1}' AwkLab.data
+
+No output
+
+4. Code: awk -F: '{if($3 + $4 + $5 < 700)print $1}' AwkLab.data >> AwkLab_output
+
+Samuel Vimes
+Ponder Stibbons
+Angua von Überwald
+Susan Sto Helit
+Tiffany Aching
+Sacharissa Cripslock
+Frodo Baggins
+Tom Bombadil
+Peregrin Took
+Samwise Gamgee
+A.A. Milne
+Antoine de Saint-Exupery
+
+5. Code: awk -F: '{if($3 + $4 + $5 / 3 > 100 )print $1}' AwkLab.data | awk -F" " '{print $1 " "substr($2,0,1)}' >> AwkLab_output 
+
+Samuel V
+Ponder S
+Angua v
+Susan S
+Tiffany A
+Sacharissa C
+Adora B
+Frodo B
+Tom B
+Peregrin T
+Samwise G
+A.A. M
+Antoine d
+Adalgrim T
+Bandobras "
+Belladonna T
+Eglantine T
+Mirabella T
+Ferumbras I
+Gerontius T
+
+6. Code: awk -F: '!/(916)/{print $1}' AwkLab.data | awk '{print $2}' >> AwkLab_output 
+
+Vimes
+Stibbons
+von
+Sto
+Aching
+Belle
+Baggins
+Took
+Gamgee
+de
+Took
+"Bullroarer"
+Took
+Took
+Took
+III
+Took
+
+7. Code: awk '{print  NR" "$0}' AwkLab.data >> AwkLab_output
+
+1 Samuel Vimes:(510) 548-1278:250:100:175
+2 Ponder Stibbons:(408) 538-2358:155:90:201
+3 Angua von Überwald:(206) 654-6279:250:60:50 
+4 Susan Sto Helit:(206) 548-1348:250:100:175 
+5 Tiffany Aching:(206) 548-1278:15:188:150 
+6 Sacharissa Cripslock:(916) 343-6410:250:100:175 
+7 Adora Belle Dearheart:(406) 298-7744:450:300:275 
+8 Frodo Baggins:(206) 548-1278:250:80:75 
+9 Tom Bombadil:(916) 348-4278:250:100:175 
+10 Peregrin Took:(510) 548-5258:50:95:135 
+11 Samwise Gamgee:(408) 926-3456:250:168:200 
+12 A.A. Milne:(916) 440-1763:175:75:300 
+13 Antoine de Saint-Exupery:(123) 978-6432:250:100:175 
+14 Adalgrim Took:(345) 978-7684:4673:100:467 
+15 Bandobras "Bullroarer" Took:(453) 978-3534:6753:368:4673 
+16 Belladonna Took:(123) 978-5754:356:247:175 
+17 Eglantine Took:(123) 978-3574:473:475:4367 
+18 Mirabella Took:(345) 978-2677:783:563:175 
+19 Ferumbras III Took:(563) 978-753:250:100:3457 
+20 Gerontius Took:(574) 978-8535:535:678:4562 
+
+8. Code: awk -F: '{print $1", Total Contribution: $" $3 + $4 + $5}' AwkLab.data >> AwkLab_output
+
+Samuel Vimes, Total Contribution: $525
+Ponder Stibbons, Total Contribution: $446
+Angua von Überwald, Total Contribution: $360
+Susan Sto Helit, Total Contribution: $525
+Tiffany Aching, Total Contribution: $353
+Sacharissa Cripslock, Total Contribution: $525
+Adora Belle Dearheart, Total Contribution: $1025
+Frodo Baggins, Total Contribution: $405
+Tom Bombadil, Total Contribution: $525
+Peregrin Took, Total Contribution: $280
+Samwise Gamgee, Total Contribution: $618
+A.A. Milne, Total Contribution: $550
+Antoine de Saint-Exupery, Total Contribution: $525
+Adalgrim Took, Total Contribution: $5240
+Bandobras "Bullroarer" Took, Total Contribution: $11794
+Belladonna Took, Total Contribution: $778
+Eglantine Took, Total Contribution: $5315
+Mirabella Took, Total Contribution: $1521
+Ferumbras III Took, Total Contribution: $3807
+Gerontius Took, Total Contribution: $5775
+
+9. Code: awk -F: '/Tiffany Aching/{print $3 + 10}' AwkLab.data >> AwkLab_output
+
+25
+
+10. Code: awk -F: '/Samwise Gamgee/{ sub($1,"Sean Astin"); print $0}' AwkLab.data >> AwkLab_output 
+
+Sean Astin:(408) 926-3456:250:168:200 
